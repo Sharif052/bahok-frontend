@@ -1,7 +1,9 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
+import {helloWorld} from '../api/indexApi'
 
-export default function Home() {
+
+const Home = (catchHello) =>{
   return (
     <div className={styles.container}>
       <Head>
@@ -63,3 +65,9 @@ export default function Home() {
     </div>
   )
 }
+Home.getInitialProps = async () => {
+  let hello = await helloWorld();
+  console.log("HELLO ", hello)
+  return "hello"
+}
+export default Home;
